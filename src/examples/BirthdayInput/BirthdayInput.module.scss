@@ -1,0 +1,75 @@
+.form {
+  max-width: 300px;
+  margin: 10px;
+}
+
+.input {
+  // colors
+  --color-grey: #4b4b4b;
+  --color-grey-dark: #d9d9d9;
+  --color-disabled-button: #b9b9b9;
+  --color-light-text: #8a8c95;
+  --background-disabled-button: #f1f1f1;
+  --color-red: #e82f3f;
+  // for input element
+  --input-height: 40px;
+  --input-padding-horizontal: 23px;
+  --input-font-size: 12px;
+  --input-color: var(--color-grey);
+  --input-color-readonly: var(--color-disabled-button);
+  --input-placeholder-color: var(--color-disabled-button);
+  --input-background: #fff;
+  --input-border-color: var(--color-grey-dark);
+  --input-border: 1px solid var(--input-border-color);
+  --input-border-color-disabled: var(--background-disabled-button);
+  --input-border-color-focus: var(--color-light-text);
+  --input-border-color-readonly: var(--background-disabled-button);
+  --input-border-color-wrong: var(--color-red);
+  --input-border-radius: calc(var(--input-height) / 2);
+
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--input-padding-horizontal);
+  font-family: inherit;
+  font-size: var(--input-font-size);
+  color: var(--input-color);
+  background: var(--input-background);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  box-shadow: none;
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+    opacity: 1;
+  }
+
+  &:focus,
+  &:global(.focus) {
+    border-color: var(--input-border-color-focus);
+  }
+
+  &:global(.readOnly) {
+    color: var(--input-color-readonly);
+    border-color: var(--input-border-color-readonly);
+    pointer-events: none;
+
+    &:focus,
+    &:global(.focus) {
+      border-color: var(--input-border-color-readonly);
+    }
+  }
+
+  &:global(.disabled) {
+    color: var(--input-color);
+    border-color: var(--input-border-color-disabled);
+    opacity: 1;
+  }
+
+  &:global(.wrong) {
+    border-color: var(--input-border-color-wrong) !important;
+    :global(.mask__tmp) {
+      color: var(--color-red);
+    }
+  }
+}
