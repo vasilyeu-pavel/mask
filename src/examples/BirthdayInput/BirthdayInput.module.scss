@@ -1,6 +1,6 @@
-.form {
-  max-width: 300px;
-  margin: 10px;
+.inputContainer {
+  display: grid;
+  grid-area: birthday;
 }
 
 .input {

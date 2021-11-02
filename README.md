@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# React Mask
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React input mask with simply interface and just customisation
 
-## Available Scripts
+**Features** 
 
-In the project directory, you can run:
+- **colorizes mask**
+- works with different mask
+- takes different validators 
+- can works with copy/paste events
+- supports dynamic changed masks
+- supports all major browsers
+- no external dependencies
+ 
 
-### `yarn start`
+### Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Install the package
+`npm i react-mask --save`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Use
 
-### `yarn test`
+React Mask exports default MaskInput component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+`import MaskInput from "react-mask""`
 
-### `yarn build`
+MaskInput has interface look like simple native input with two addition props (`mask`, `separators`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`mask` is showing how transform value
+`separators` are array of symbols who must be a skipped
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+We just should need paste MaskInput in yours component and hand over needs props 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+<MaskInput
+  value={value}
+  mask={mask}
+  separators={separators}
+  onChange={onChange}
+  placeholder="placeholder"
+  modifiers={modifiers}
+/>
+```
 
-### `yarn eject`
+### Props
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+| Prop | Required | Type | Description | Example |
+| :--- | :---: | :---: | :---: | ---: |
+| `mask` | true | string | pattern | "xxx (xx) xxx xx xx" |
+| `separators` | true | string[] | to skipping symbols | [" ", "(", ")"] |
+| `value` | true | string | input value | - |
+| `onChange` | true | func | on change cb | - |
+| `validators` | false | func[] | list of validators who will call by chain. (default [isNumber]) (value: string): string | undefined | [isNumber] |
+| `placeholder` | false | string | showing with empty input | - |
+| `modifiers` | false | string | setting custom styles | - |
+| `modifiersErrors` | false | string | setting custom styles for errors container | - |
+| `type` | false | string | input type (default `tel`), **don't have to use number** | string |
+| `withErrors` | false | bool | trigger for visible errors block (default false) | true |
+| `errors` | false | string[] | array of errors | ["Value is not a number"] |
+| `disabled` | false | bool | flag for disabling input | true |
+| `readOnly` | false | bool | flag for set readOnly in input | true |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Advance
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+If you want using custom react input component, mask exports additional wrapper.
 
-## Learn More
+`import { MaskWrapper } from "react-mask""`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You should wrap your custom input and hand over props
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+example:
 
-### Code Splitting
+```
+<MaskWrapper
+  value={value}
+  mask={mask}
+  errors={errors}
+  separators={[" "]}
+  onChange={onChange}
+  modifiers={modifiers}
+>
+  {({
+    maskInputStyle,
+    maskInputWrapperStyle,
+    inputRef,
+    value,
+    handleMaskChange,
+  }) => (
+      <Input
+        type="tel"
+        wrapperModifiers={maskInputWrapperStyle}
+        modifiers={joinClasses("input", maskInputStyle)}
+        value={value}
+        required={required}
+        onChange={handleMaskChange}
+        name={name}
+        readOnly={readOnly}
+        disabled={isDisabled}
+        tabIndex={tabIndex}
+        onBlur={onBlur}
+        inputRef={inputRef}
+      />
+    )
+  }
+</MaskWrapper>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**In children MaskWrapper returns props who needed hand over to custom input**
 
-### Analyzing the Bundle Size
+If you want using simply function to transform value to custom mask or cut all separators
+You can import `prepareValueFromMask, prepareValueToMask`  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+`import { prepareValueFromMask, prepareValueToMask } from "react-mask""`
 
-### Making a Progressive Web App
+example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+const value = "375292222222"
+const mask = "xxx (xx) xxx xx xx"
+const separators = [" ", "(", ")"]
 
-### Advanced Configuration
+prepareValueToMask(value, mask, [" "])
+  .toBe("375 (29) 222 22 22")
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+prepareValueFromMask("12/01/2000", ["/"]))
+  .toBe("12012000")
+```

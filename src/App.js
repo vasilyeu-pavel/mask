@@ -1,11 +1,9 @@
 import React from "react"
-import BirthdayInput from "./examples/BirthdayInput/BirthdayInput"
+import Main from "./examples/Main/Main"
 
 function App() {
     return (
-        <BirthdayInput
-
-        />
+        <Main />
     )
 }
 

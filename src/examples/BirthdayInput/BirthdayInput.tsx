@@ -1,30 +1,39 @@
-import React, { useState, useCallback } from "react"
+import React, {
+    useState,
+    useCallback,
+    memo,
+} from "react"
 import MaskInput from "../../MaskInput"
 
-import styles from "./FormInput.module.scss"
+import styles from "./BirthdayInput.module.scss"
 
-const mask = "xxx (xx) xxx xx";
-const separators = [" ", "(", ")"];
+export const mask = "DD/MM/YYYY"
+const separators = ["/"]
 
-function FormInput() {
-    const [value, setValue] = useState("")
+export const BirthdayInput = () => {
+    const [date, setDate] = useState("")
 
-    const onChange = useCallback((value) => {
-        setValue(value)
-    }, [setValue])
+    const handleBirthDate = useCallback((value: string) => {
+        const [separator] = separators
+        const [dayValue, monthValue, yearValue] = value.split(separator)
+
+        console.log("date:", dayValue, monthValue, yearValue)
+
+        setDate(value)
+    }, [setDate])
 
     return (
-        <form className={styles.form}>
+        <div className={styles.inputContainer}>
             <MaskInput
-                value={value}
+                value={date}
                 mask={mask}
+                name="fullBirthdayDate"
                 separators={separators}
-                onChange={onChange}
-                placeholder="fake-placeholder"
+                onChange={handleBirthDate}
                 modifiers={styles.input}
             />
-        </form>
-    );
+        </div>
+    )
 }
 
-export default FormInput;
+export default memo(BirthdayInput)

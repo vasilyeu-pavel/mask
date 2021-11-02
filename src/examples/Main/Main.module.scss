@@ -1,6 +1,10 @@
-.inner {
+.main {
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: ' birthday'
+  grid-template-areas: 'birthdayText birthday'
+}
+
+.birthdayText {
+  grid-area: birthdayText;
 }
