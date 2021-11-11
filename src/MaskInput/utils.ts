@@ -13,26 +13,25 @@ import {
   TValidator,
 } from "./types"
 
-
 export const makeHandleKeyDown = (setCursorPosition: (value: number) => void) =>
-    (e: KeyboardEvent) => {
-      if (!PRESS_KEY_EVENTS.includes(e.key)) return
+  (e: KeyboardEvent) => {
+    if (!PRESS_KEY_EVENTS.includes(e.key)) return
 
-      e.preventDefault()
+    e.preventDefault()
 
-      const { selectionStart } = e.target as HTMLInputElement
-      const cursorPosition = selectionStart || 0
+    const { selectionStart } = e.target as HTMLInputElement
+    const cursorPosition = selectionStart || 0
 
-      switch (e.key) {
-        case LEFT: {
-          if (cursorPosition - 1 < 0) return
+    switch (e.key) {
+      case LEFT: {
+        if (cursorPosition - 1 < 0) return
 
-          return setCursorPosition(cursorPosition - 1)
-        }
-          // eslint-disable-next-line no-fallthrough
-        case RIGHT: return setCursorPosition(cursorPosition + 1)
+        return setCursorPosition(cursorPosition - 1)
       }
+      // eslint-disable-next-line no-fallthrough
+      case RIGHT: return setCursorPosition(cursorPosition + 1)
     }
+  }
 
 export const isNumber = (value: string): string | undefined => {
   if (!/^\d+$/.test(value)) {
@@ -41,10 +40,10 @@ export const isNumber = (value: string): string | undefined => {
 }
 
 export const getMaskOptions = (
-    mask: string,
-    separators: string[],
-    startPosition = 0,
-    finishedPosition?: number,
+  mask: string,
+  separators: string[],
+  startPosition = 0,
+  finishedPosition?: number,
 ) => {
   const result: {
     separators: {
@@ -93,9 +92,9 @@ export const prepareValueFromMask = (value: string, separators: string[]): strin
  * @param value
  */
 export const prepareValueToMask = (
-    value: string,
-    mask: string,
-    separators: string[],
+  value: string,
+  mask: string,
+  separators: string[],
 ): {
   maskedValue: string,
   originalValue: string,
@@ -125,12 +124,12 @@ let tmp: number | null = null
  * saves current cursor position on click by input field
  */
 export const handleMaskClick = (
-    {
-      valueToMaskStyle,
-      setCursorPosition,
-      handleMaskFocus,
-      isTouch,
-    }: {
+  {
+    valueToMaskStyle,
+    setCursorPosition,
+    handleMaskFocus,
+    isTouch,
+  }: {
       valueToMaskStyle: string,
       setCursorPosition: TSetCursorPosition,
       handleMaskFocus: (isFocus: boolean) => void,
@@ -168,15 +167,15 @@ export /**
  * returns value in mask style
  */
 const getCursorPosition = (
-    {
-      nextMaskValue,
-      toMove,
-      prevMaskValue,
-      separators,
-      cursorPosition,
-      toMoveCursorAfterPasted,
-      mask,
-    }: {
+  {
+    nextMaskValue,
+    toMove,
+    prevMaskValue,
+    separators,
+    cursorPosition,
+    toMoveCursorAfterPasted,
+    mask,
+  }: {
       nextMaskValue: string,
       toMove: number, // default from input
       prevMaskValue: string,
@@ -225,9 +224,9 @@ const getCursorPosition = (
       toMoveCursor,
       // was removed prev symbol if you touch backspace after separator // 123 |41 -> 12|4 1
       toInsertValue: nextMaskValue
-          .split("")
-          .filter((a, i) => !!(i !== toMoveCursor))
-          .join(""),
+        .split("")
+        .filter((a, i) => !!(i !== toMoveCursor))
+        .join(""),
     }
   }
 
@@ -266,12 +265,12 @@ const getCursorPosition = (
       // was removed next symbol if you touch delete before separator // 123| 3 -> 123 | -> 123|
       // and should prepare new input value to mask style (remove separators)
       toInsertValue: prepareValueToMask(
-          nextMaskValue
-              .split("")
-              .filter((a, i) => !!(i !== toMoveCursor))
-              .join(""),
-          mask,
-          separators,
+        nextMaskValue
+          .split("")
+          .filter((a, i) => !!(i !== toMoveCursor))
+          .join(""),
+        mask,
+        separators,
       ).maskedValue,
     }
   }
@@ -315,27 +314,27 @@ const getCursorPosition = (
  * @param value
  */
 export const handleValidators = (value: string) =>
-    (validators: TValidator[]): Array<string> | undefined => {
-      const errorsFromValidators = validators.reduce((
-          acc: Array<string>,
-          validator: TValidator,
-      ) => {
-        const error = validator(value)
+  (validators: TValidator[]): Array<string> | undefined => {
+    const errorsFromValidators = validators.reduce((
+      acc: Array<string>,
+      validator: TValidator,
+    ) => {
+      const error = validator(value)
 
-        value.length && error && acc.push(error)
+      value.length && error && acc.push(error)
 
-        return acc
-      }, [])
+      return acc
+    }, [])
 
-      if (!errorsFromValidators.length) return
+    if (!errorsFromValidators.length) return
 
-      return errorsFromValidators
-    }
+    return errorsFromValidators
+  }
 
 export const getSeparatorsArroundCursor = (
-    mask: string,
-    separators: TSeparators,
-    cursorPosition: number,
+  mask: string,
+  separators: TSeparators,
+  cursorPosition: number,
 ): {
   minus: number,
   plus: number,
@@ -379,10 +378,10 @@ export const getSeparatorsArroundCursor = (
  * should return chars: 2, separators: 1
  */
 export const getCharsInfo = (
-    mask: string,
-    separators: TSeparators,
-    cursorPosition: number,
-    pastedValue: string,
+  mask: string,
+  separators: TSeparators,
+  cursorPosition: number,
+  pastedValue: string,
 ): {
   chars: number,
   separators: number,
@@ -412,17 +411,17 @@ export const getCharsInfo = (
  * example 123 -> 12/3
  */
 export const getMaskValue = (
-    {
-      value,
-      selectionStart,
-      mask,
-      separators,
-      validators,
-      prevMaskValue,
-      cursorPosition,
-      errorsCB,
-      pastedValue,
-    }: {
+  {
+    value,
+    selectionStart,
+    mask,
+    separators,
+    validators,
+    prevMaskValue,
+    cursorPosition,
+    errorsCB,
+    pastedValue,
+  }: {
       value: string,
       mask: string,
       separators: TSeparators,
@@ -453,17 +452,17 @@ export const getMaskValue = (
 
   if (pastedValue) {
     const counts = getCharsInfo(
-        mask,
-        separators,
-        cursorPosition,
-        pastedValue,
+      mask,
+      separators,
+      cursorPosition,
+      pastedValue,
     )
 
     toMoveCursorAfterPasted = counts.chars + counts.separators
   }
 
   const errorsFromCustomValidators = handleValidators(
-      prepareValueFromMask(slicedMaskValue, separators),
+    prepareValueFromMask(slicedMaskValue, separators),
   )(validators)
 
   if (errorsFromCustomValidators && errorsFromCustomValidators.length) {
@@ -488,17 +487,16 @@ export const getMaskValue = (
 }
 
 export const makePasteHandler = (setPastedValue: (value: string) => void) =>
-    (e: ClipboardEvent) => {
-      // Get pasted data via clipboard API
-      const clipboardData = e.clipboardData || (window as any).clipboardData
-      const pastedData = clipboardData.getData("Text")
+  (e: ClipboardEvent) => {
+    // Get pasted data via clipboard API
+    const clipboardData = e.clipboardData || (window as any).clipboardData
+    const pastedData = clipboardData.getData("Text")
 
-      setPastedValue(pastedData)
-    }
+    setPastedValue(pastedData)
+  }
 
-
-export const joinClasses = (...props: any) => props.filter(Boolean).join(" ");
+export const joinClasses = (...props: any) => props.filter(Boolean).join(" ")
 
 export const setCSSVar = (label: HTMLLabelElement, name: string, value: string) => {
-  label.style.setProperty(name, value);
-};
+  label.style.setProperty(name, value)
+}

@@ -38,7 +38,6 @@ describe("MaskInput", () => {
 
     const component = shallow(<MaskInput {...defaultProps} withErrors />)
 
-
     expect(component.find(".errorContainer").length).toBe(1)
   })
 })

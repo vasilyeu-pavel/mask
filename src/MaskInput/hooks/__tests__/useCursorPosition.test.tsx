@@ -1,10 +1,10 @@
 import React from "react"
-import { mount, configure } from "enzyme"
+import { configure, mount } from "enzyme"
 import Adapter from "enzyme-adapter-react-16"
-import useCursorPosition, { IProps } from "../useCursorPosition"
 import { typeCasting } from "../../types"
+import useCursorPosition, { IProps } from "../useCursorPosition"
 
-configure({ adapter: new Adapter() });
+configure({ adapter: new Adapter() })
 
 const setCursorPosition = jest.fn()
 const cursorPosition = 1
@@ -53,7 +53,7 @@ describe("useCursorPosition", () => {
 
   it("should not call setSelectionRange in effect", () => {
     jest.spyOn(React, "useRef")
-        .mockImplementationOnce(() => ({ current: fakeElement }))
+      .mockImplementationOnce(() => ({ current: fakeElement }))
 
     mount(<Component {...props} />)
     expect(setSelectionRange).not.toHaveBeenCalledWith(cursorPosition, cursorPosition)
@@ -61,7 +61,7 @@ describe("useCursorPosition", () => {
 
   it("should call setSelectionRange in effect", () => {
     jest.spyOn(React, "useRef")
-        .mockImplementationOnce(() => ({ current: fakeElement }))
+      .mockImplementationOnce(() => ({ current: fakeElement }))
 
     mount(<Component {...props} isFocus />)
     expect(setSelectionRange).toHaveBeenCalledWith(cursorPosition, cursorPosition)

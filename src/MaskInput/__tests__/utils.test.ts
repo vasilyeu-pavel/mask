@@ -21,54 +21,54 @@ const setCursorPosition = jest.fn()
 describe("getSeparatorsArroundCursor", () => {
   it("should return counts of separators", () => {
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        3,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      3,
     )).toEqual({
       minus: 0,
       plus: 2,
     })
 
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        4,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      4,
     )).toEqual({
       minus: 1,
       plus: 1,
     })
 
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        1,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      1,
     )).toEqual({
       minus: 0,
       plus: 0,
     })
 
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        5,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      5,
     )).toEqual({
       minus: 2,
       plus: 0,
     })
 
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        6,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      6,
     )).toEqual({
       minus: 0,
       plus: 0,
     })
 
     expect(getSeparatorsArroundCursor(
-        "xxx (xx) xxx xx xx",
-        [" ", "(", ")"],
-        4,
+      "xxx (xx) xxx xx xx",
+      [" ", "(", ")"],
+      4,
     )).toEqual({
       minus: 1,
       plus: 1,
@@ -214,13 +214,13 @@ describe("prepareValueFromMask", () => {
 describe("prepareValueToMask", () => {
   it("should prepare value to mask style", () => {
     expect(prepareValueToMask("111111", "__/__/__", ["/"]))
-        .toStrictEqual({ maskedValue: "11/11/11", originalValue: "111111" })
+      .toStrictEqual({ maskedValue: "11/11/11", originalValue: "111111" })
 
     expect(prepareValueToMask("1231", "xx xxx xxx xx", [" "]))
-        .toStrictEqual({ maskedValue: "12 31", originalValue: "1231" })
+      .toStrictEqual({ maskedValue: "12 31", originalValue: "1231" })
 
     expect(prepareValueToMask("1", "xx xxx xxx xx", [" "]))
-        .toStrictEqual({ maskedValue: "1", originalValue: "1" })
+      .toStrictEqual({ maskedValue: "1", originalValue: "1" })
   })
 })
 
@@ -565,40 +565,40 @@ describe("getMaskValue", () => {
 
   it("getCharsInfo", () => {
     expect(getCharsInfo(
-        "xx/xx/xxxx",
-        ["/"],
-        0,
-        "1234",
+      "xx/xx/xxxx",
+      ["/"],
+      0,
+      "1234",
     )).toEqual({
       chars: 4,
       separators: 1,
     })
 
     expect(getCharsInfo(
-        "xx/xx/xxxx",
-        ["/"],
-        0,
-        "123456",
+      "xx/xx/xxxx",
+      ["/"],
+      0,
+      "123456",
     )).toEqual({
       chars: 6,
       separators: 2,
     })
 
     expect(getCharsInfo(
-        "xx/xx/xxxx",
-        ["/"],
-        0,
-        "12345612321321321",
+      "xx/xx/xxxx",
+      ["/"],
+      0,
+      "12345612321321321",
     )).toEqual({
       chars: 8,
       separators: 2,
     })
 
     expect(getCharsInfo(
-        "xx/xx/xxxx",
-        ["/"],
-        3,
-        "12345612321321321",
+      "xx/xx/xxxx",
+      ["/"],
+      3,
+      "12345612321321321",
     )).toEqual({
       chars: 6,
       separators: 1,

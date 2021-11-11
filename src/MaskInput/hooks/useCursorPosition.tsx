@@ -16,13 +16,13 @@ export interface IProps {
 }
 
 function useCursorPosition <T extends HTMLInputElement> (
-    {
-      cursorPosition,
-      setCursorPosition,
-      isFocus,
-      setPastedValue,
-      handleMaskFocus,
-   }: IProps
+  {
+    cursorPosition,
+    setCursorPosition,
+    isFocus,
+    setPastedValue,
+    handleMaskFocus,
+  }: IProps,
 ): MutableRefObject<T> {
   const inputRef = useRef() as MutableRefObject<T>
 

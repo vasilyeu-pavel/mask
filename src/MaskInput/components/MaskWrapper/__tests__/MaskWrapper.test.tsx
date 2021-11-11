@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import { mount, shallow } from "enzyme"
 import { IMaskWrapperProps, typeCasting } from "../../../types"
 import { setCSSVar } from "../../../utils"
@@ -20,7 +20,7 @@ jest.mock("react", () => {
     ...originalModule,
     useState: jest.fn(),
   }
-});
+})
 
 Object.defineProperty(document, "fonts", {
   value: {
@@ -50,11 +50,11 @@ describe("MaskWrapper", () => {
 
   test("snapshot", () => {
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => ["YYYY", jest.fn()])
-        .mockImplementationOnce(() => [false, jest.fn()])
-        .mockImplementationOnce(() => [0, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["YYYY", jest.fn()])
+      .mockImplementationOnce(() => [false, jest.fn()])
+      .mockImplementationOnce(() => [0, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     const component = shallow(<MaskWrapper {...defaultProps} />)
 
@@ -64,11 +64,11 @@ describe("MaskWrapper", () => {
 
   test("should exist focus class", () => {
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => ["YYYY", jest.fn()])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [0, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["YYYY", jest.fn()])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [0, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     const component = shallow(<MaskWrapper {...defaultProps} />)
 
@@ -77,11 +77,11 @@ describe("MaskWrapper", () => {
 
   test("should exist error class", () => {
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => ["YYYY", jest.fn()])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [0, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["YYYY", jest.fn()])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [0, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     const component = shallow(<MaskWrapper {...defaultProps} errors={["error"]} />)
 
@@ -100,11 +100,11 @@ describe("MaskWrapper", () => {
     })
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => ["10", setMaskValue])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, jest.fn()])
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["10", setMaskValue])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     jest.spyOn(React, "useRef").mockImplementationOnce(() => ({ current: null }))
 
@@ -120,11 +120,11 @@ describe("MaskWrapper", () => {
     const setMaskValue = jest.fn()
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => ["12", setMaskValue])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, jest.fn()])
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => ["12", setMaskValue])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     Object.defineProperty(HTMLElement.prototype, "offsetWidth", {
       configurable: true,
@@ -151,11 +151,11 @@ describe("MaskWrapper", () => {
     })
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => [maskValue, setMaskValue])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, jest.fn()])
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => [maskValue, setMaskValue])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     mount(<MaskWrapper {...defaultProps} value={value} />)
 
@@ -176,11 +176,11 @@ describe("MaskWrapper", () => {
     })
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => [maskValue, setMaskValue])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, jest.fn()])
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => [maskValue, setMaskValue])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     await mount(<MaskWrapper {...defaultProps} value={value} />)
 
@@ -199,11 +199,11 @@ describe("MaskWrapper", () => {
     })
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, setCursorPosition])
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, setCursorPosition])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     mount(<MaskWrapper {...defaultProps} value={value} />)
 
@@ -221,11 +221,11 @@ describe("MaskWrapper", () => {
     })
 
     jest.spyOn(React, "useState")
-        .mockImplementationOnce(() => [value, jest.fn()])
-        .mockImplementationOnce(() => [true, jest.fn()])
-        .mockImplementationOnce(() => [1, jest.fn()])
-        .mockImplementationOnce(() => [value, setValueToMaskStyle])
-        .mockImplementationOnce(() => ["", jest.fn()])
+      .mockImplementationOnce(() => [value, jest.fn()])
+      .mockImplementationOnce(() => [true, jest.fn()])
+      .mockImplementationOnce(() => [1, jest.fn()])
+      .mockImplementationOnce(() => [value, setValueToMaskStyle])
+      .mockImplementationOnce(() => ["", jest.fn()])
 
     mount(<MaskWrapper {...defaultProps} value={value} />)
 
