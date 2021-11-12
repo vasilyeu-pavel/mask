@@ -3,17 +3,17 @@ import React, {
   useCallback,
   useState,
 } from "react"
-import MaskInput from "../../MaskInput"
+import MaskInput, { TMaskProps } from "../../MaskInput"
 
 import styles from "./Input.module.scss"
 
-interface IProps {
+export interface IProps extends Pick<TMaskProps, "validators"> {
   mask: string;
   separators: string[];
   name: string;
 }
 
-export const Input = ({ mask, separators, name }: IProps) => {
+export const Input = ({ mask, separators, name, validators }: IProps) => {
   const [value, setValue] = useState("")
 
   const onChange = useCallback((
@@ -35,6 +35,7 @@ export const Input = ({ mask, separators, name }: IProps) => {
         separators={separators}
         onChange={onChange}
         modifiers={styles.input}
+        validators={validators}
       />
     </div>
   )
