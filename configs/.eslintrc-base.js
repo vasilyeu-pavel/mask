@@ -1,6 +1,11 @@
 module.exports = {
-    extends: ['umbrellio', 'umbrellio/react', 'umbrellio/jest', 'umbrellio/flow'],
-    parser: 'babel-eslint',
+    extends: [
+        "umbrellio",
+        "umbrellio/flow",
+        "umbrellio/react",
+        "umbrellio/jest"
+    ],
+    parser: "babel-eslint",
     env: {
         browser: true,
         es6: true,
@@ -29,14 +34,14 @@ module.exports = {
         APP_CONFIG: true,
     },
     rules: {
-        'no-buffer-constructor': 0,
-        'switch-colon-spacing': 0,
-        'new-cap': 0,
-        'react/prefer-stateless-function': [2, { 'ignorePureComponents': true }],
-        'flowtype/newline-after-flow-annotation': [2, 'always'],
-        'import/newline-after-import': ['error', { 'count': 1 }],
-        'no-empty-function': 2,
-        'react/jsx-closing-tag-location': 2,
-        'react/jsx-first-prop-new-line': 2
+        "no-buffer-constructor": 0,
+        "switch-colon-spacing": 0,
+        "new-cap": 0,
+        "react/prefer-stateless-function": [2, { "ignorePureComponents": true }],
+        "flowtype/newline-after-flow-annotation": [2, "always"],
+        "import/newline-after-import": ["error", { "count": 1 }],
+        "no-empty-function": 2,
+        "react/jsx-closing-tag-location": 2,
+        "react/jsx-first-prop-new-line": 2
     }
 }
