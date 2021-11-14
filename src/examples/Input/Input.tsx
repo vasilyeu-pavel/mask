@@ -11,9 +11,10 @@ export interface IProps extends Pick<TMaskProps, "validators"> {
   mask: string;
   separators: string[];
   name: string;
+  withErrors?: boolean;
 }
 
-export const Input = ({ mask, separators, name, validators }: IProps) => {
+export const Input = ({ mask, separators, name, validators, withErrors }: IProps) => {
   const [value, setValue] = useState("")
 
   const onChange = useCallback((
@@ -36,6 +37,7 @@ export const Input = ({ mask, separators, name, validators }: IProps) => {
         onChange={onChange}
         modifiers={styles.input}
         validators={validators}
+        withErrors={withErrors}
       />
     </div>
   )
