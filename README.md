@@ -11,6 +11,8 @@ React input mask with simply interface and just customisation
 - supports dynamic changed masks
 - supports all major browsers
 - no external dependencies
+
+[demo](https://mask-52cec.firebaseapp.com/)
  
 
 ### Setup
