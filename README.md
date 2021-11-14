@@ -110,6 +110,8 @@ example:
 
 **In children MaskWrapper returns props who needed hand over to custom input**
 
+### Mask utils
+
 If you want using simply function to transform value to custom mask or cut all separators
 You can import `prepareValueFromMask, prepareValueToMask`  
 
