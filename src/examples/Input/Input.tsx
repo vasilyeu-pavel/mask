@@ -1,17 +1,20 @@
+// eslint-disable-next-line simple-import-sort/imports
 import React, {
   memo,
   useCallback,
   useState,
 } from "react"
-import MaskInput, { TMaskProps } from "../../MaskInput"
+import MaskInput from "mask-field"
+import "mask-field/lib/index.css"
 
 import styles from "./Input.module.scss"
 
-export interface IProps extends Pick<TMaskProps, "validators"> {
+export interface IProps {
   mask: string;
   separators: string[];
   name: string;
   withErrors?: boolean;
+  validators?: Array<(value: string) => string | undefined>;
 }
 
 export const Input = ({ mask, separators, name, validators, withErrors }: IProps) => {
